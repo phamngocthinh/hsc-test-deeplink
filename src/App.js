@@ -55,15 +55,15 @@ const isZaloInApp = () => {
 };
 
 function App() {
-  useEffect(() => {
-    const targetUrl = window.location.href;
-    if (!isZaloInApp()) return;
+  // useEffect(() => {
+  //   const targetUrl = window.location.href;
+  //   if (!isZaloInApp()) return;
 
-    const platform = detectOS();
-    try {
-      redirectToDeviceBrowser({ url: targetUrl, os: platform });
-    } catch (_) {}
-  }, []);
+  //   const platform = detectOS();
+  //   try {
+  //     redirectToDeviceBrowser({ url: targetUrl, os: platform });
+  //   } catch (_) {}
+  // }, []);
 
   return (
     <div className="App">
