@@ -10,17 +10,15 @@ const detectOS = () => {
   return "other";
 };
 
-export const redirectToDeviceBrowser = async ({ url, platform }) => {
+export const redirectToDeviceBrowser = async ({ url, os }) => {
   if (typeof window === "undefined") {
     return;
   }
 
   const urlWithoutProtocol = url.replace(/^https?:\/\//, "");
-  const isHttps = /^https:\/\//i.test(url);
-  const scheme = isHttps ? "https" : "http";
 
   try {
-    if (platform === "ios") {
+    if (os === "ios") {
       // Try safari - 15, 17, 18
       const iosUrl = `x-safari-${url}`;
       window.location.href = iosUrl;
@@ -33,10 +31,8 @@ export const redirectToDeviceBrowser = async ({ url, platform }) => {
       return false;
     }
 
-    if (platform === "android") {
-      const androidIntent = `intent://${urlWithoutProtocol}#Intent;scheme=${scheme};package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(
-        url
-      )};end;`;
+    if (os === "android") {
+      const androidIntent = `intent://${urlWithoutProtocol}#Intent;scheme=http;package=com.android.chrome;end;`;
       window.location.href = androidIntent;
       return false;
     }
@@ -48,11 +44,25 @@ export const redirectToDeviceBrowser = async ({ url, platform }) => {
   }
 };
 
+const isZaloInApp = () => {
+  if (typeof window === "undefined") return false;
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const ref = document.referrer || "";
+  if (/Zalo/i.test(ua)) return true;
+  if (/zalo\.me|open\.zalo\.me/i.test(ref)) return true;
+  const sp = new URLSearchParams(window.location.search);
+  return sp.get("isWebView") === "zalo";
+};
+
 function App() {
   useEffect(() => {
-    const platform = detectOS();
+    const targetUrl = window.location.href;
+    if (!isZaloInApp()) return;
 
-    redirectToDeviceBrowser({ url: window.location.href, platform });
+    const platform = detectOS();
+    try {
+      redirectToDeviceBrowser({ url: targetUrl, os: platform });
+    } catch (_) {}
   }, []);
 
   return (
