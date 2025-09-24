@@ -77,10 +77,12 @@ export const ModalWebViewAlert = ({
             width: "100%",
             maxWidth: "100px",
             height: "40px",
-            padding: "6px 16px",
             borderRadius: "4px",
             border: "none",
             cursor: "pointer",
+            margin: "0 auto",
+            transform: "translateX(-50%)",
+            marginLeft: "50%",
           }}
         >
           {isTryOpenBrowser ? "Copy URL" : "Mở trình duyệt"}

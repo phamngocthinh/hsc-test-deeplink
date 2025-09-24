@@ -32,11 +32,11 @@ export const AppModal: FC<AppModalProps & PropsWithChildren> = ({
   const modalStyle: React.CSSProperties = {
     background: "#fff",
     borderRadius: 8,
-    maxWidth: "90vw",
-    width: 480,
+    maxWidth: "80vw",
     maxHeight: "90vh",
     overflow: "auto",
     boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+    padding: "20px 16px",
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -56,7 +56,7 @@ export const AppModal: FC<AppModalProps & PropsWithChildren> = ({
         role="dialog"
         aria-modal="true"
       >
-        <div className="modal-header">{header}</div>
+        <div style={{ textAlign: "center" }}>{header}</div>
         <div className="modal-content">{children}</div>
         <div className="modal-footer">{footer}</div>
       </div>
