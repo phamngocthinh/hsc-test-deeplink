@@ -14,7 +14,7 @@ export const redirectToDeviceBrowser = async ({ url, os }: { url: string; os: 'a
       // Try safari old way
       await new Promise((r) => setTimeout(r, 1000));
       const iosOldUrl = `com-apple-mobilesafari-tab:${url}`;
-      window.location.href = iosOldUrl;
+      window.location.href = "hscone://open/profile?id=123";
 
       return false;
     }
