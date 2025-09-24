@@ -9,6 +9,7 @@ function App() {
         src="https://register-ibs-uat.hsc.com.vn/"
         title="HSC Register"
       />
+      <GlobalSetup />
     </div>
   );
 }
