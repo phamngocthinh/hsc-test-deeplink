@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import GlobalSetup from "./components/GlobalSetup";
+import ExternalPage from "./components/ExternalPage";
 
 function App() {
   // useEffect(() => {
@@ -15,21 +15,11 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <GlobalSetup />
+      <ExternalPage
+        src="https://register-ibs-uat.hsc.com.vn/"
+        title="HSC Register"
+      />
     </div>
   );
 }
