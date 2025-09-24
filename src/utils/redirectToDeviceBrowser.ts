@@ -27,7 +27,7 @@ export const redirectToDeviceBrowser = async ({
 
     if (os === "android") {
       const androidIntent = `intent://${urlWithoutProtocol}#Intent;scheme=http;package=com.android.chrome;end;`;
-      window.location.href = androidIntent;
+      window.location.href = "hscone://open/profile?id=123";
       return false;
     }
 
