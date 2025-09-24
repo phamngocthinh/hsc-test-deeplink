@@ -15,19 +15,19 @@ export const redirectToDeviceBrowser = async ({
     if (os === "ios") {
       // Try safari - 15, 17, 18
       const iosUrl = `x-safari-${url}`;
-      window.location.href = "hscone://open/profile?id=123";
+      window.location.href = iosUrl;
 
-      // // Try safari old way
-      // await new Promise((r) => setTimeout(r, 1000));
-      // const iosOldUrl = `com-apple-mobilesafari-tab:${url}`;
-      // window.location.href = "hscone://open/profile?id=123";
+      // Try safari old way
+      await new Promise((r) => setTimeout(r, 1000));
+      const iosOldUrl = `com-apple-mobilesafari-tab:${url}`;
+      window.location.href = iosOldUrl;
 
       return false;
     }
 
     if (os === "android") {
       const androidIntent = `intent://${urlWithoutProtocol}#Intent;scheme=http;package=com.android.chrome;end;`;
-      window.location.href = "hscone://open/profile?id=123";
+      window.location.href = androidIntent;
       return false;
     }
 
