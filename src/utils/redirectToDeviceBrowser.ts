@@ -57,8 +57,6 @@ export const redirectToDeviceBrowser = async ({
   const storeUrl =
     os === "ios" ? DOWNLOAD_HSC_APPSTORE : DOWNLOAD_HSC_GOOGLE_PLAY;
 
-  // Trình duyệt không ném lỗi khi mở custom scheme.
-  // Chiến lược: điều hướng tới scheme, đợi ngắn; nếu trang không bị ẩn (không chuyển app) thì đưa tới store.
   let pageHiddenOrBlurred = false;
   const onVisibilityChange = () => {
     if (document.hidden) {
@@ -72,19 +70,15 @@ export const redirectToDeviceBrowser = async ({
   document.addEventListener("visibilitychange", onVisibilityChange);
   window.addEventListener("blur", onWindowBlur);
 
-  const navigationStart = Date.now();
-
   // Thử mở app
   window.location.href = appSchemeUrl;
 
-  // Đợi một khoảng ngắn để phát hiện chuyển app
-  await new Promise((resolve) => setTimeout(resolve, 1200));
+  await new Promise((r) => setTimeout(r, 1000));
 
   document.removeEventListener("visibilitychange", onVisibilityChange);
   window.removeEventListener("blur", onWindowBlur);
 
-  const elapsed = Date.now() - navigationStart;
-  if (!pageHiddenOrBlurred && elapsed < 2000) {
+  if (!pageHiddenOrBlurred) {
     window.location.href = storeUrl;
   }
 };
