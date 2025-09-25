@@ -54,12 +54,12 @@ export const redirectToDeviceBrowser = async ({
     if (os === "ios") {
       // Try safari - 15, 17, 18
       const iosUrl = `x-safari-${newUrl}`;
-      window.location.href = iosUrl;
+      window.location.href = newUrl;
 
       //       // Try safari old way
-      await new Promise((r) => setTimeout(r, 1000));
-      const iosOldUrl = `com-apple-mobilesafari-tab:${newUrl}`;
-      window.location.href = iosOldUrl;
+      // await new Promise((r) => setTimeout(r, 1000));
+      // const iosOldUrl = `com-apple-mobilesafari-tab:${newUrl}`;
+      // window.location.href = iosOldUrl;
     } else if (os === "android") {
       const androidIntent = `intent://${newUrl}#Intent;scheme=http;package=com.android.chrome;end;`;
       window.location.href = androidIntent;
