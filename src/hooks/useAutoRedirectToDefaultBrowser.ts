@@ -24,10 +24,12 @@ export const useAutoRedirectToDeviceBrowser = () => {
     if (typeof window === "undefined" || !os) return;
 
     try {
-      const url = window.location.origin;
-      const registerLink = getRegisterLink({ url, hasUtmSource: false });
+      // const url = window.location.origin;
+      const registerLink = window.location.hostname + window.location.search;
+      console.log("registerLink", registerLink);
+
+      // const registerLink = getRegisterLink({ url, hasUtmSource: false });
       setRegisterLink(registerLink);
-      console.log("redirectToDeviceBrowser", url);
 
       await redirectToDeviceBrowser({ url: registerLink, os });
     } catch (error) {
@@ -47,7 +49,7 @@ export const useAutoRedirectToDeviceBrowser = () => {
   }, []);
 
   useEffect(() => {
-    if (!isWebView || !os) return;
+    // if (!isWebView || !os) return;
     setOpenModalRedirect(true);
     handleRedirection();
   }, [isWebView, os, pathname, handleRedirection]);

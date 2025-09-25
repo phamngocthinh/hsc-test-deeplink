@@ -38,12 +38,19 @@
 //   }
 // };
 
-export const redirectToDeviceBrowser = async ({ url, os }) => {
+export const redirectToDeviceBrowser = async ({
+  url,
+  os,
+}: {
+  url: string;
+  os: "android" | "ios";
+}) => {
   if (typeof window === "undefined") {
     return;
   }
   try {
     window.location.href = `hsconeuat://${url}`;
+    return false;
   } catch (error) {
     // if (os === "ios") {
     //   window.location.href = `x-safari-${url}`;
