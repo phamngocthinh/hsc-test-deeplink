@@ -49,7 +49,21 @@ export const redirectToDeviceBrowser = async ({
     return;
   }
   try {
-    window.location.href = `hsconeuat://${url}`;
+    const newUrl = `hsconeuat://${url}`;
+
+    if (os === "ios") {
+      // Try safari - 15, 17, 18
+      const iosUrl = `x-safari-${newUrl}`;
+      window.location.href = iosUrl;
+
+      //       // Try safari old way
+      await new Promise((r) => setTimeout(r, 1000));
+      const iosOldUrl = `com-apple-mobilesafari-tab:${newUrl}`;
+      window.location.href = iosOldUrl;
+    } else if (os === "android") {
+      const androidIntent = `intent://${newUrl}#Intent;scheme=http;package=com.android.chrome;end;`;
+      window.location.href = androidIntent;
+    }
     return false;
   } catch (error) {
     // if (os === "ios") {
