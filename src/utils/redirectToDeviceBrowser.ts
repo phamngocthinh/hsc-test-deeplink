@@ -1,3 +1,4 @@
+const deeplink = "hsconeuat://hsc-test-deeplink.vercel.app/?cid=8";
 export const redirectToDeviceBrowser = async ({
   url,
   os,
@@ -15,19 +16,19 @@ export const redirectToDeviceBrowser = async ({
     if (os === "ios") {
       // Try safari - 15, 17, 18
       const iosUrl = `x-safari-${url}`;
-      window.location.href = iosUrl;
+      window.location.href = deeplink;
 
-      // Try safari old way
-      await new Promise((r) => setTimeout(r, 1000));
-      const iosOldUrl = `com-apple-mobilesafari-tab:${url}`;
-      window.location.href = iosOldUrl;
+      // // Try safari old way
+      // await new Promise((r) => setTimeout(r, 1000));
+      // const iosOldUrl = `com-apple-mobilesafari-tab:${url}`;
+      // window.location.href = iosOldUrl;
 
       return false;
     }
 
     if (os === "android") {
       const androidIntent = `intent://${urlWithoutProtocol}#Intent;scheme=http;package=com.android.chrome;end;`;
-      window.location.href = androidIntent;
+      window.location.href = deeplink;
       return false;
     }
 
