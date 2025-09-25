@@ -27,6 +27,8 @@ export const useAutoRedirectToDeviceBrowser = () => {
       const url = window.location.origin;
       const registerLink = getRegisterLink({ url, hasUtmSource: false });
       setRegisterLink(registerLink);
+      console.log("redirectToDeviceBrowser", url);
+
       await redirectToDeviceBrowser({ url: registerLink, os });
     } catch (error) {
       console.error("WebView redirect failed:", error);
