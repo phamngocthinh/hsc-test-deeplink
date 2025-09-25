@@ -9,14 +9,14 @@ const GlobalSetup = () => {
   const { openModalRedirect, registerLink, handleRedirection } =
     useAutoRedirectToDeviceBrowser();
 
-  if (openModalRedirect) {
-    return (
-      <ModalWebViewAlert
-        registerLink={registerLink}
-        onRedirect={handleRedirection}
-      />
-    );
-  }
+  // if (openModalRedirect) {
+  //   return (
+  //     <ModalWebViewAlert
+  //       registerLink={registerLink}
+  //       onRedirect={handleRedirection}
+  //     />
+  //   );
+  // }
 
   return null;
 };

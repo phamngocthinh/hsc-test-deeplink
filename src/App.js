@@ -9,6 +9,7 @@ import ExternalPage from "./components/ExternalPage";
 function App() {
   return (
     <div className="App">
+      <img src="/ONE.jpeg" alt="Background" className="fullscreen-image" />
       <GlobalSetup />
     </div>
   );
