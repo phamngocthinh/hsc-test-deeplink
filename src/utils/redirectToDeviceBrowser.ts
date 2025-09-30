@@ -53,7 +53,7 @@ export const redirectToDeviceBrowser = async ({
   if (typeof window === "undefined") {
     return;
   }
-  const appSchemeUrl = `hscone://${url}`;
+  const appSchemeUrl = `hsconeuat://${url}`;
   const storeUrl =
     os === "ios" ? DOWNLOAD_HSC_APPSTORE : DOWNLOAD_HSC_GOOGLE_PLAY;
 
